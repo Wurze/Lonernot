@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Lonernot.States;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Lonernot
@@ -10,11 +11,23 @@ namespace Lonernot
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        public GameState gameState;
+        public MenuState menuState;
+        public GameOverState gameOverState;
+        private State _currentState;
+        private State _nextState;
+        private int defaultWidth = 1920;
+        private int defaultHeight = 1080;
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this)
+            {
+                PreferredBackBufferWidth = defaultWidth,
+                PreferredBackBufferHeight = defaultHeight
+            };
             Content.RootDirectory = "Content";
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -26,7 +39,9 @@ namespace Lonernot
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            menuState = new MenuState(this, graphics.GraphicsDevice, Content);
+            gameState = new GameState(this, graphics.GraphicsDevice, Content);
+            gameOverState = new GameOverState(this, graphics.GraphicsDevice, Content);
             base.Initialize();
         }
 
@@ -71,9 +86,18 @@ namespace Lonernot
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            spriteBatch.Begin();
+
+            _currentState.Draw(gameTime, spriteBatch);
+
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+        public void ChangeState(State state)
+        {
+            _nextState = state;
         }
     }
 }
