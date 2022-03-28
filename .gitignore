@@ -4,3 +4,4 @@ obj/ARM/Debug/Lonernot.csproj.AssemblyReference.cache
 obj/ARM/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 obj/ARM/Debug/Lonernot.csproj.AssemblyReference.cache
 *.cache
+obj/project.assets.json
