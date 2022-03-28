@@ -15,11 +15,16 @@ namespace Lonernot.States
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             map = new Map(content, "Content/Lonernot.tmx");
+            map.AddCollision();
         }
 
+        public void DrawMap(SpriteBatch spriteBatch)
+        {
+            map.DrawMapLayer(spriteBatch);
+        }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            DrawMap(spriteBatch);
         }
 
         public override void Update(GameTime gameTime)
