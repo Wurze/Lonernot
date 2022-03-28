@@ -17,14 +17,22 @@ namespace Lonernot.States
             map = new Map(content, "Content/Lonernot.tmx");
         }
 
+        public void DrawMap(SpriteBatch spriteBatch)
+        {
+            
+                map.DrawMapLayer(spriteBatch);
+                
+            
+        }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            DrawMap(spriteBatch);
+            
         }
 
         public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

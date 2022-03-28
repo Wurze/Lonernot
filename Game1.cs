@@ -16,8 +16,8 @@ namespace Lonernot
         public GameOverState gameOverState;
         private State _currentState;
         private State _nextState;
-        private int defaultWidth = 1920;
-        private int defaultHeight = 1080;
+        private int defaultWidth = 1280;
+        private int defaultHeight = 830;
 
         public Game1()
         {
@@ -39,9 +39,9 @@ namespace Lonernot
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            menuState = new MenuState(this, graphics.GraphicsDevice, Content);
+            //menuState = new MenuState(this, graphics.GraphicsDevice, Content);
             gameState = new GameState(this, graphics.GraphicsDevice, Content);
-            gameOverState = new GameOverState(this, graphics.GraphicsDevice, Content);
+            //gameOverState = new GameOverState(this, graphics.GraphicsDevice, Content);
             base.Initialize();
         }
 
@@ -53,6 +53,7 @@ namespace Lonernot
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            _currentState = gameState;
 
             // TODO: use this.Content to load your game content here
         }
@@ -74,7 +75,7 @@ namespace Lonernot
         protected override void Update(GameTime gameTime)
         {
             // TODO: Add your update logic here
-
+            _currentState.Update(gameTime);
             base.Update(gameTime);
         }
 
