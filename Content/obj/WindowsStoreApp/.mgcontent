@@ -4,9 +4,13 @@
   <Platform>WindowsStoreApp</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/Zaco/Documents/GitHub/Lonernot/Content/Spritesheets/Minotaur.png</File>
+    <File>C:/Users/Zaco/Documents/GitHub/Lonernot/Content/Spritesheets/Soldier 1.png</File>
     <File>C:/Users/Zaco/Documents/GitHub/Lonernot/Content/Tileset.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>
