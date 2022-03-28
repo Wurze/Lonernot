@@ -1,4 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/Zaco/Documents/GitHub/Lonernot/Content/Spritesheets/Minotaur.png","C:/Users/Zaco/Documents/GitHub/Lonernot/Content/bin/WindowsStoreApp/Spritesheets/Minotaur.xnb","TextureProcessor","Texture2DContent",2720,82005,0.0893956
-"C:/Users/Zaco/Documents/GitHub/Lonernot/Content/Spritesheets/Soldier 1.png","C:/Users/Zaco/Documents/GitHub/Lonernot/Content/bin/WindowsStoreApp/Spritesheets/Soldier 1.xnb","TextureProcessor","Texture2DContent",1142,65621,0.0050817
-"C:/Users/Zaco/Documents/GitHub/Lonernot/Content/Tileset.png","C:/Users/Zaco/Documents/GitHub/Lonernot/Content/bin/WindowsStoreApp/Tileset.xnb","TextureProcessor","Texture2DContent",12905,229461,0.0056489
+"C:/Users/Zaco/Documents/GitHub/Lonernot/Content/Tileset.png","C:/Users/Zaco/Documents/GitHub/Lonernot/Content/bin/WindowsStoreApp/Tileset.xnb","TextureProcessor","Texture2DContent",12905,229461,0.2911256
