@@ -108,7 +108,7 @@
     <Compile Include="Engine\Animation.cs" />
     <Compile Include="Engine\AnimationManager.cs" />
     <Compile Include="Engine\Sprite.cs" />
-    <Compile Include="Gameplay\Map.cs" />
+    <Compile Include="Map.cs" />
     <Compile Include="Gameplay\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />

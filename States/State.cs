@@ -33,7 +33,7 @@ namespace Lonernot
 
             this._content = _content;
 
-            //textFont = _content.Load<SpriteFont>("Fonts/Font");
+            textFont = _content.Load<SpriteFont>("Fonts/Font");
 
 
         }

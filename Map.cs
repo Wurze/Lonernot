@@ -78,7 +78,7 @@ namespace Lonernot
 
        
 
-        public void AddCollision()
+        public void AddCollisionPath()
         {
             foreach (var point in map.ObjectGroups["Collision"].Objects)
             {
