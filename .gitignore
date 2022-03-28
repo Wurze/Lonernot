@@ -1,9 +1,22 @@
+*.suo
+*.user
+*.sln.docstates
 
-.vs/Lonernot/v16/.suo
-obj/ARM/Debug/Lonernot.csproj.AssemblyReference.cache
-obj/ARM/Debug/DesignTimeResolveAssemblyReferencesInput.cache
-obj/ARM/Debug/Lonernot.csproj.AssemblyReference.cache
-*.cache
-obj/project.assets.json
-obj/ARM/Debug/Lonernot.csproj.AssemblyReference.cache
-*.cache
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Bb]in/
+[Oo]bj/
+# build folder is nowadays used for build scripts and should not be ignored
+#build/
+
+# NuGet Packages
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/packages/repositories.config
+
