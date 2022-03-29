@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="62">
  <tileset firstgid="1" name="Lonernot" tilewidth="16" tileheight="16" tilecount="224" columns="16">
-  <image source="../../../../Desktop/Labyrinth Explorers Asset/Tiles/Tileset.png" width="256" height="224"/>
+  <image source="Tileset.png" width="256" height="224"/>
  </tileset>
  <tileset firstgid="225" name="hero" tilewidth="16" tileheight="16" tilecount="64" columns="8">
-  <image source="../../../../Desktop/Labyrinth Explorers Asset/Characters/Soldier 1.png" width="128" height="128"/>
+  <image source="Spritesheets/Soldier 1.png" width="128" height="128"/>
  </tileset>
  <layer id="1" name="Background" width="40" height="23" locked="1">
   <data encoding="csv">

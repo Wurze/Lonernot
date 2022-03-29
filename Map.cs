@@ -72,11 +72,12 @@ namespace Lonernot
         public void DrawMapLayer(SpriteBatch spritebatch)
         {
             DrawLayer(0, spritebatch);
+            DrawLayer(1, spritebatch);
         }
 
-      
+     
 
-       
+
 
         public void AddCollisionPath()
         {
