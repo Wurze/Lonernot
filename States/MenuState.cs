@@ -14,13 +14,13 @@ namespace Lonernot.States
     public class MenuState : State
     {
 
-        private Texture2D Background;
+        private Texture2D background;
         private List<Button> _button;
 
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
           : base(game, graphicsDevice, content)
         {
-            Background = _content.Load<Texture2D>("Controls/Background");
+            background = _content.Load<Texture2D>("Controls/background");
             var buttonTexture = _content.Load<Texture2D>("Controls/button3");
             var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
 
@@ -30,6 +30,14 @@ namespace Lonernot.States
                 Text = "New Game",
             };
             newGameButton.Click += NewGameButton_Click;;
+
+            var instructionsButton = new Button(buttonTexture, buttonFont)
+            {
+                Position = new Vector2(570, 450),
+                Text = "Instructions",
+            };
+
+            instructionsButton.Click += IntructionsButton_Click;
 
             var settingsButton = new Button(buttonTexture, buttonFont)
             {
@@ -50,15 +58,19 @@ namespace Lonernot.States
             _button = new List<Button>()
             {
                 newGameButton,
+                instructionsButton,
                 settingsButton,
                 quitGameButton,
             };
         }
 
 
+
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-           
+            spriteBatch.Draw(background, new Vector2(0, 0), Color.Pink);
+            foreach (var button in _button)
+                button.Draw(gameTime, spriteBatch);
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
@@ -66,9 +78,9 @@ namespace Lonernot.States
             _game.ChangeState(_game.gameState);
         }
 
-        private void QuitGameButton_Click(object sender, EventArgs e)
+        private void IntructionsButton_Click(object sender, EventArgs e)
         {
-            _game.Exit();
+            _game.ChangeState(_game.instructionsState);
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)
@@ -76,9 +88,15 @@ namespace Lonernot.States
             _game.ChangeState(_game.settingsState);
         }
 
+        private void QuitGameButton_Click(object sender, EventArgs e)
+        {
+            _game.Exit();
+        }
+
         public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            foreach (var button in _button)
+                button.Update(gameTime);
         }
     }
 }
