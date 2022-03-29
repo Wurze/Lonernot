@@ -51,6 +51,7 @@ namespace Lonernot
             // TODO: Add your initialization logic here
             //menuState = new MenuState(this, graphics.GraphicsDevice, Content);
             gameState = new GameState(this, graphics.GraphicsDevice, Content);
+            menuState = new MenuState(this, graphics.GraphicsDevice, Content);
             //gameOverState = new GameOverState(this, graphics.GraphicsDevice, Content);
             base.Initialize();
         }

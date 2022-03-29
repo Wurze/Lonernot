@@ -20,7 +20,7 @@ namespace Lonernot.States
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
           : base(game, graphicsDevice, content)
         {
-            Background = _content.Load<Texture2D>("Controls/Background");
+            //Background = _content.Load<Texture2D>("Controls/Background");
             var buttonTexture = _content.Load<Texture2D>("Controls/button3");
             var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
 
