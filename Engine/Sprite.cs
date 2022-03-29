@@ -24,6 +24,8 @@ namespace Lonernot.Engine
         public Vector2 _movement;
         public Vector2 _destination;
 
+       
+
         public Vector2 Position
         {
             get { return _position; }
@@ -94,13 +96,20 @@ namespace Lonernot.Engine
                 );
         }
 
-
         public void CenterOrigin()
         {
             Origin = new Vector2(_texture.Width / 2.0f, _texture.Height / 2.0f);
 
             UpdateBoundingBox();
         }
+
+
+
+
+
+
+
+
 
         public virtual void Update(GameTime gameTime)
         {

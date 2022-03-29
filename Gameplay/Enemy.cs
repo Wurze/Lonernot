@@ -15,28 +15,20 @@ namespace Lonernot
         public float mSpeed = 1.2f;
         
         public Vector2 One { get; }
-        
+
+        public float LinearVelocity = 4f;
+
+        // for following
+        public Sprite FollowTarget { get; set; }
+        public float FollowDistance { get; set; }
+
         public Enemy(Dictionary<string, Animation> animations) : base(animations)
         {
             
-            SetPosition(new Vector2(160,630));
+            SetPosition(new Vector2(380,630));
             
         }
 
-        public void FollowPlayer(Player player)
-        {
-            
-            var distance = player.GetPosition() - Position;
-            SetRotation((float)Math.Atan2(distance.Y, distance.X));
-            SetDirection(new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation)));
-            var currentDistance = Vector2.Distance(Position, player.BoundingBox.Location.ToVector2());
-
-            var t = MathHelper.Min((float)Math.Abs(currentDistance), Velocity.X);
-            var velocity = GetDirection() * t;
-
-            SetPosition(GetPosition() + velocity);
-            
-        }
 
 
         public void MoveUp()
@@ -55,18 +47,30 @@ namespace Lonernot
             
         }
 
+        // start Follow
 
-       
+        
 
+  
 
-
-
-
+        protected virtual void SetAnimations()
+        {
+            if (Velocity.X > 0)
+                _animationManager.Play(_animations["Walking_right"]);
+            else if (Velocity.X < 0)
+                _animationManager.Play(_animations["Walking_left"]);
+            else if (Velocity.Y > 0)
+                _animationManager.Play(_animations["Walking_down"]);
+            else if (Velocity.Y < 0)
+                _animationManager.Play(_animations["Walking_up"]);
+            else _animationManager.Stop();
+        }
 
         public override void Update(GameTime gameTime)
         {
 
-            
+            //Follow();
+            //SetAnimations();
             base.Update(gameTime);
         }
 

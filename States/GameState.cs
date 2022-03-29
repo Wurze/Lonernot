@@ -60,11 +60,32 @@ namespace Lonernot.States
 
         }
 
+        public void Follow()
+        {
+           
+
+            var distance = player.Position - enemy.Position;
+            enemy._rotation = (float)Math.Atan2(distance.Y, distance.X);
+
+            enemy.Direction = new Vector2((float)Math.Cos(enemy._rotation), (float)Math.Sin(enemy._rotation));
+
+            var currentDistance = Vector2.Distance(enemy.Position, player.Position);
+            if (currentDistance > enemy.FollowDistance)
+            {
+                var t = MathHelper.Min((float)Math.Abs(currentDistance - enemy.FollowDistance), enemy.LinearVelocity);
+                var velocity = enemy.Direction * t;
+
+                enemy.Position += velocity/8;
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             player.Update(gameTime);
+            enemy.Update(gameTime);
+            Follow();
             //enemy.TestMovement();
-            enemy.FollowPlayer(player);
+            //enemy.FollowPlayer(player);
         }
     }
 }
