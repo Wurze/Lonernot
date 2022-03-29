@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="Controls\Button.cs" />
     <Compile Include="Engine\Global.cs" />
+    <Compile Include="Engine\Input.cs" />
     <Compile Include="Engine\Save.cs" />
     <Compile Include="Engine\SoundControl.cs" />
     <Compile Include="Engine\SoundItem.cs" />
