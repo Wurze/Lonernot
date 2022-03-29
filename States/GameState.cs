@@ -14,7 +14,7 @@ namespace Lonernot.States
     {
         public Map map;
         public Player player;
-        
+        public Enemy enemy;
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             map = new Map(content, "Content/Lonernot.tmx");
@@ -27,8 +27,19 @@ namespace Lonernot.States
             };
             
             player = new Player(playerAnimations);
-            
-                
+
+            //loading animations for enemy
+            var enemyAnimations = new Dictionary<string, Animation>()
+            {
+                {"Walking_up", new Animation(content.Load<Texture2D>("Spritesheets/Enemy/Walking_up"),4) },
+                {"Walking_down", new Animation(content.Load<Texture2D>("Spritesheets/Enemy/Walking_down"),4) },
+                {"Walking_right", new Animation(content.Load<Texture2D>("Spritesheets/Enemy/Walking_right"),4) },
+                {"Walking_left", new Animation(content.Load<Texture2D>("Spritesheets/Enemy/Walking_left"),4) }
+
+            };
+
+            //create enemy
+            enemy = new Enemy(enemyAnimations);
             // Buttons Creation
             var buttonTexture = _content.Load<Texture2D>("Controls/button3");
             var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
@@ -45,14 +56,15 @@ namespace Lonernot.States
         {
             DrawMap(spriteBatch);
             player.Draw(spriteBatch);
-          
-           
+            enemy.Draw(spriteBatch);
+
         }
 
         public override void Update(GameTime gameTime)
         {
             player.Update(gameTime);
-           
+            //enemy.TestMovement();
+            enemy.FollowPlayer(player);
         }
     }
 }
