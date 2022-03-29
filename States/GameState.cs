@@ -15,6 +15,10 @@ namespace Lonernot.States
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             map = new Map(content, "Content/Lonernot.tmx");
+
+            // Buttons Creation
+            var buttonTexture = _content.Load<Texture2D>("Controls/button3");
+            var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
         }
 
         public void DrawMap(SpriteBatch spriteBatch)
