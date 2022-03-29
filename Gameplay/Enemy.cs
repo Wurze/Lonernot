@@ -13,6 +13,7 @@ namespace Lonernot
     {
 
         public float mSpeed = 1.2f;
+        public Vector2 One { get; }
         
         public Enemy(Dictionary<string, Animation> animations) : base(animations)
         {
@@ -32,6 +33,12 @@ namespace Lonernot
             var velocity = GetDirection() * t;
 
             SetPosition(GetPosition() + velocity);
+        }
+
+        public void TestMovement()
+        {
+            
+            SetPosition(GetPosition() + Vector2.One );
         }
 
 

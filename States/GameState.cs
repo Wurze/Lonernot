@@ -63,12 +63,14 @@ namespace Lonernot.States
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             DrawMap(spriteBatch);
+            enemy.Draw(spriteBatch);
             
         }
 
         public override void Update(GameTime gameTime)
         {
-            
+            enemy.TestMovement();
+            enemy.FollowPlayer(player);
         }
     }
 }
