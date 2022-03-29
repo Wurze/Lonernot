@@ -13,18 +13,21 @@ namespace Lonernot
     {
 
         public float mSpeed = 1.2f;
+        
         public Vector2 One { get; }
         
         public Enemy(Dictionary<string, Animation> animations) : base(animations)
         {
             this._animations = animations;
             this._animationManager = new AnimationManager(animations);
+            SetPosition(new Vector2(160,630));
             
         }
 
         public void FollowPlayer(Player player)
         {
-            var distance = player.Position - Position;
+            
+            var distance = player.GetPosition() - Position;
             SetRotation((float)Math.Atan2(distance.Y, distance.X));
             SetDirection(new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation)));
             var currentDistance = Vector2.Distance(Position, player.InteractionBox.Location.ToVector2());
@@ -33,12 +36,24 @@ namespace Lonernot
             var velocity = GetDirection() * t;
 
             SetPosition(GetPosition() + velocity);
+            
         }
 
-        public void TestMovement()
+
+        public void MoveUp()
+        {
+
+            SetPosition(GetPosition() + new Vector2(1f, 0));
+
+        }
+
+
+
+        public void MoveDown()
         {
             
-            SetPosition(GetPosition() + Vector2.One );
+         SetPosition(GetPosition() + new Vector2(-1f, 0));
+            
         }
 
 
@@ -50,10 +65,15 @@ namespace Lonernot
             }
         }
 
+
+
+
+
+
         public override void Update(GameTime gameTime)
         {
 
-
+            
             base.Update(gameTime);
         }
 
