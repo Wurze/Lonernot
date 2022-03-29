@@ -8,32 +8,29 @@ using System.Threading.Tasks;
 
 namespace Lonernot.Engine
 {
-    public class AnimationManager : Sprite
+    public class AnimationManager
     {
         protected Animation _animation;
+        private float _timer;
+        public Vector2 Position { get; set; }
 
-
-        public AnimationManager(Dictionary<string, Animation> animations) : base(animations.ElementAt(0).Value.Texture)
-        {
-
-        }
-        public AnimationManager(Animation animation) : base(animation.Texture)
+       
+        public AnimationManager(Animation animation) 
         {
             _animation = animation;
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch, SpriteEffects spriteEffects)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
 
-            int row = _animation.CurrentFrame / _animation.Columns;
-            int column = _animation.CurrentFrame % _animation.Columns;
+            
             spriteBatch.Draw(_animation.Texture,
                             Position,
-                             new Rectangle(_animation.FrameWidth * column,
-                                           _animation.FrameHeight * row,
+                             new Rectangle(_animation.CurrentFrame * 
+                                           _animation.FrameWidth,0,
                                            _animation.FrameWidth,
                                            _animation.FrameHeight),
-                             Color.White, _rotation, Origin, Scale, spriteEffects, 0);
+                             Color.White);
 
         }
 
@@ -50,6 +47,7 @@ namespace Lonernot.Engine
             _timer = 0;
 
         }
+       
 
         public void PlayOneFrame(Animation animation, int frame)
         {
@@ -64,7 +62,7 @@ namespace Lonernot.Engine
             _animation.CurrentFrame = 0;
         }
 
-        public virtual void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
 
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -99,35 +97,6 @@ namespace Lonernot.Engine
 
         }
 
-       
-
-
-
-        public override void UpdateBoundingBox()
-        {
-            int width = 0;
-            int height = 0;
-
-            if (_animation != null)
-            {
-                width = _animation.FrameWidth;
-                height = _animation.FrameHeight;
-            }
-
-            BoundingBox = new Rectangle(
-                (int)(_position.X - (int)Math.Ceiling(Origin.X)),
-                (int)(_position.Y - (int)Math.Ceiling(Origin.Y)),
-                width, height);
-        }
-
-        public void SetAnimation(Animation animation)
-        {
-            this._animation = animation;
-        }
-
-        public Animation GetAnimation()
-        {
-            return this._animation;
-        }
+  
     }
 }

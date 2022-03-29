@@ -6,46 +6,62 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Input;
 
 namespace Lonernot
 {
-    public class Player : AnimationManager
+    public class Player : Sprite
     {
-        public float mSpeed = 1.2f;
+        public float mSpeed = 1f;
         public bool isCaught = false;
-        public Player(Dictionary<string,Animation>animations): base(animations)
+        
+        public Player(Dictionary<string,Animation>animations):base(animations)
         {
-            this._animations = animations;
-            this._animationManager = new AnimationManager(animations);
+            
+            Input = new Input()
+            {
+                Up = Keys.W,
+                Down = Keys.S,
+                Left = Keys.A,
+                Right = Keys.D,
+            };
             
         }
-        public Rectangle InteractionBox
+
+        
+        public virtual void Move()
         {
-            get
-            {
-                // interactionBox need to be bigger than bounding box
-                Rectangle interactionBox = _animationManager.BoundingBox;
-
-                interactionBox.X += 0;
-                interactionBox.Y += 5;
-                interactionBox.Width -= 20;
-                interactionBox.Height -= 15;
-
-                return interactionBox;
-            }
+            if (Keyboard.GetState().IsKeyDown(Input.Up))
+                Velocity.Y = -mSpeed;
+            else if (Keyboard.GetState().IsKeyDown(Input.Down))
+                Velocity.Y = mSpeed;
+            else if (Keyboard.GetState().IsKeyDown(Input.Left))
+                Velocity.X = -mSpeed;
+            else if (Keyboard.GetState().IsKeyDown(Input.Right))
+                Velocity.X = mSpeed;
         }
-        /* protected override void SetAnimations()
-         {
-
-         }*/
-
-
-        public override void Draw(SpriteBatch spriteBatch, SpriteEffects spriteEffects)
+        protected virtual void SetAnimations()
         {
-            if (_animationManager != null && IsActive)
-            {
-                _animationManager.Draw(spriteBatch, spriteEffects);
-            }
+            if (Velocity.X > 0)
+                _animationManager.Play(_animations["Walking_right"]);
+            else if (Velocity.X < 0)
+                _animationManager.Play(_animations["Walking_left"]);
+            else if (Velocity.Y > 0)
+                _animationManager.Play(_animations["Walking_down"]);
+            else if (Velocity.Y < 0)
+                _animationManager.Play(_animations["Walking_up"]);
+            else _animationManager.Stop();
+        }
+        public override void Update(GameTime gameTime)
+        {
+            Move();
+            SetAnimations();
+            Position += Velocity;
+            Velocity = Vector2.Zero;
+            base.Update(gameTime);
+            
+            
+           
         }
     }
 

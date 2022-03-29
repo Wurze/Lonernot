@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,10 @@ namespace Lonernot.Engine
         public float _timer;
         public float _rotation;
         public float radius;
-        public float yVelocity;
-        public float xVelocity;
-        public float LifeSpan = 0f;
+        public Vector2 Velocity;
+        public float LifeSpan = 1f;
         public float Scale { get; set; }
-        
+        public Input Input;
         public Vector2 Origin;
         public Vector2 Direction;
         public Vector2 _position;
@@ -33,7 +33,7 @@ namespace Lonernot.Engine
 
                 if (_animationManager != null)
                     _animationManager.Position = _position;
-                UpdateBoundingBox();
+                
             }
         }
 
@@ -63,29 +63,25 @@ namespace Lonernot.Engine
             }
         }
 
+        public Sprite(Dictionary<string, Animation> animations)
+        {
+            _animations = animations;
+            _animationManager = new AnimationManager(_animations.First().Value);
+        }
+
         public Sprite(Texture2D texture)
         {
-            this._texture = texture;
-
-            // The default origin in the centre of the sprite
-            this.Origin = new Vector2(0, 0);
-            this.IsActive = true;
-            Scale = 1;
-
-
+            _texture = texture;
         }
 
-        public virtual void Update(GameTime gameTime, List<Sprite> sprites)
-        {
-
-        }
-
-
-
+       
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, _position, null, Color.White, _rotation, Origin, Scale, SpriteEffects.None, 0);
-
+            if (_texture != null)
+                spriteBatch.Draw(_texture, Position, Color.White);
+            else if (_animationManager != null)
+                _animationManager.Draw(spriteBatch);
+            else throw new Exception("This ain't right..!");
         }
 
         public virtual void UpdateBoundingBox()
@@ -106,7 +102,11 @@ namespace Lonernot.Engine
             UpdateBoundingBox();
         }
 
+        public virtual void Update(GameTime gameTime)
+        {
 
+            _animationManager.Update(gameTime);
+        }
 
         // get and set methods
 
@@ -130,25 +130,7 @@ namespace Lonernot.Engine
             return LifeSpan;
         }
 
-        public void SetXvelocity(float velocity)
-        {
-            xVelocity = velocity;
-        }
-
-        public float GetXvelocity()
-        {
-            return xVelocity;
-        }
-
-        public void SetYvelocity(float velocity)
-        {
-            yVelocity = velocity;
-        }
-
-        public float GetYvelocity()
-        {
-            return yVelocity;
-        }
+       
 
         public void SetOrigin(Vector2 Origin)
         {
