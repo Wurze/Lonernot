@@ -1,6 +1,8 @@
 ﻿using Lonernot.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using PixelDefense.States;
 
 namespace Lonernot
 {
@@ -13,11 +15,19 @@ namespace Lonernot
         SpriteBatch spriteBatch;
         public GameState gameState;
         public MenuState menuState;
+        public SettingsState settingsState;
         public GameOverState gameOverState;
+        public MouseState mouseState;
+
         private State _currentState;
         private State _nextState;
         private int defaultWidth = 1280;
         private int defaultHeight = 830;
+
+        public void ChangeState(State state)
+        {
+            _nextState = state;
+        }
 
         public Game1()
         {
@@ -95,10 +105,6 @@ namespace Lonernot
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
-        }
-        public void ChangeState(State state)
-        {
-            _nextState = state;
         }
     }
 }
