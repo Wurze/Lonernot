@@ -24,10 +24,10 @@ namespace Lonernot.Engine
 
         public Texture2D Texture { get; private set; }
 
-        public Animation(Texture2D texture, int column, int row, int emptyFrames)
+        public Animation(Texture2D texture, int column, int row)
         {
 
-            this.EmptyFrame = emptyFrames;
+            
 
             this.Rows = row;
 
@@ -37,7 +37,7 @@ namespace Lonernot.Engine
 
             this.Texture = texture;
 
-            this.FrameCount = (Rows * Columns) - EmptyFrame;
+            this.FrameCount = Rows * Columns;
 
             this.IsLooping = true;
 
