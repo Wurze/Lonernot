@@ -15,14 +15,18 @@ namespace Lonernot.States
     {
 
         private Texture2D background;
+        private Texture2D papirus;
         private List<Button> _button;
+        public SpriteFont textFontTitle;
 
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
           : base(game, graphicsDevice, content)
         {
             background = _content.Load<Texture2D>("Controls/background");
+            papirus = _content.Load<Texture2D>("Controls/papirus");
             var buttonTexture = _content.Load<Texture2D>("Controls/button3");
             var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
+            this.textFontTitle = _content.Load<SpriteFont>("Fonts/TextFont");
 
             var newGameButton = new Button(buttonTexture, buttonFont)
             {
@@ -33,7 +37,7 @@ namespace Lonernot.States
 
             var instructionsButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(570, 450),
+                Position = new Vector2(570, 460),
                 Text = "Instructions",
             };
 
@@ -41,7 +45,7 @@ namespace Lonernot.States
 
             var settingsButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(570, 500),
+                Position = new Vector2(570, 520),
                 Text = "Settings",
             };
 
@@ -49,7 +53,7 @@ namespace Lonernot.States
 
             var quitGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(570, 550),
+                Position = new Vector2(570, 580),
                 Text = "Quit Game",
             };
 
@@ -64,11 +68,12 @@ namespace Lonernot.States
             };
         }
 
-
-
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            string tempStr = "Loner not";
             spriteBatch.Draw(background, new Vector2(0, 0), Color.Pink);
+            spriteBatch.Draw(papirus, new Vector2(400, 50), Color.Pink);
+            spriteBatch.DrawString(textFontTitle, tempStr, new Vector2(530, 250), Color.Black);
             foreach (var button in _button)
                 button.Draw(gameTime, spriteBatch);
         }
