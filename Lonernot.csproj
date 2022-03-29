@@ -100,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Button.cs" />
     <Compile Include="Engine\Global.cs" />
     <Compile Include="Engine\Save.cs" />
     <Compile Include="Engine\SoundControl.cs" />
@@ -142,6 +143,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.12</Version>
+    </PackageReference>
+    <PackageReference Include="MonoGame.Framework.WindowsUniversal">
+      <Version>3.8.0.1641</Version>
     </PackageReference>
     <PackageReference Include="TiledSharp">
       <Version>1.0.1</Version>
