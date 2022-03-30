@@ -37,7 +37,7 @@ namespace Lonernot
             // The collision is at the feet of the player
             BoundingBox = new Rectangle(
             (int)(Position.X ),
-            (int)(Position.Y ),
+            (int)(Position.Y + 14),
             16,
             10
             );

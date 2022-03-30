@@ -138,10 +138,14 @@ namespace Lonernot.States
             player.Position += player.Velocity;
             player.Velocity = Vector2.Zero;
             player.Update(gameTime);
-            
-            enemy.Update(gameTime);
-            Follow();
+            if (timer.GetSpawn())
+            {
+                enemy.Update(gameTime);
+            }
             timer.Update(gameTime);
+            
+            Follow();
+            
             //enemy.TestMovement();
             GameOver();
         }
