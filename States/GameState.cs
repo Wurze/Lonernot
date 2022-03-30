@@ -17,12 +17,16 @@ namespace Lonernot.States
         public Enemy enemy;
         public List<Rectangle> collison;
         public Timer timer;
+        public float score;
+        public SpriteFont font;
+        //public SpriteFont textFont;
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-
+            font = _content.Load<SpriteFont>("Fonts/Font");
             //create Timer
             timer = new Timer();
 
+            
 
             //create map
             map = new Map(content, "Content/Lonernot.tmx");
@@ -120,13 +124,15 @@ namespace Lonernot.States
                 enemy.Draw(spriteBatch);
             }
 
+            spriteBatch.DrawString(font, "Score  " + score, new Vector2(1100, 10), Color.Black);
+
         }
 
 
 
         public override void Update(GameTime gameTime)
         {
-
+            score = timer.GetGameTime();
             foreach (var wall in map.pathList)
             {
                 if ((player.Velocity.X > 0 && player.IsTouchingLeft(wall)) ||

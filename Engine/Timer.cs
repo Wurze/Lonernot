@@ -42,6 +42,11 @@ namespace Lonernot.Engine
 
         }
 
+        public float GetGameTime()
+        {
+            return currentTime;
+        }
+
 
 
 
