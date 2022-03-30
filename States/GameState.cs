@@ -16,8 +16,14 @@ namespace Lonernot.States
         public Player player;
         public Enemy enemy;
         public List<Rectangle> collison;
+        public Timer timer;
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
+
+            //create Timer
+            timer = new Timer();
+
+
             //create map
             map = new Map(content, "Content/Lonernot.tmx");
             map.AddCollision();
@@ -35,6 +41,7 @@ namespace Lonernot.States
             };
             
             player = new Player(playerAnimations);
+            player.SetPosition(map.GetStartingPoint());
 
             //loading animations for enemy
             var enemyAnimations = new Dictionary<string, Animation>()
@@ -49,6 +56,7 @@ namespace Lonernot.States
             //create enemy
             enemy = new Enemy(enemyAnimations);
             enemy.SetPosition(map.GetStartingPoint());
+
             // Buttons Creation
             var buttonTexture = _content.Load<Texture2D>("Controls/button3");
             var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
@@ -67,29 +75,36 @@ namespace Lonernot.States
         public void Follow()
         {
 
-
-            var distance = player.Position - enemy.Position;
-            enemy._rotation = (float)Math.Atan2(distance.Y, distance.X);
-
-            enemy.Direction = new Vector2((float)Math.Cos(enemy._rotation), (float)Math.Sin(enemy._rotation));
-
-            var currentDistance = Vector2.Distance(enemy.Position, player.Position);
-            if (currentDistance > enemy.FollowDistance)
+            if (timer.GetSpawn())
             {
-                var t = MathHelper.Min((float)Math.Abs(currentDistance - enemy.FollowDistance), enemy.LinearVelocity);
-                var velocity = enemy.Direction * t;
+                var distance = player.Position - enemy.Position;
+                enemy._rotation = (float)Math.Atan2(distance.Y, distance.X);
 
-                enemy.Position += velocity / 8;
+                enemy.Direction = new Vector2((float)Math.Cos(enemy._rotation), (float)Math.Sin(enemy._rotation));
+
+                var currentDistance = Vector2.Distance(enemy.Position, player.Position);
+                if (currentDistance > enemy.FollowDistance)
+                {
+                    var t = MathHelper.Min((float)Math.Abs(currentDistance - enemy.FollowDistance), enemy.LinearVelocity);
+                    var velocity = enemy.Direction * t;
+
+                    enemy.Position += velocity / 8;
+                }
+
             }
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             DrawMap(spriteBatch);
             player.Draw(spriteBatch);
-            enemy.Draw(spriteBatch);
+            if (timer.GetSpawn())
+            {
+                enemy.Draw(spriteBatch);
+            }
 
         }
-        
+
+
 
         public override void Update(GameTime gameTime)
         {
@@ -98,6 +113,7 @@ namespace Lonernot.States
             player.Update(gameTime);
             enemy.Update(gameTime);
             Follow();
+            timer.Update(gameTime);
             //enemy.TestMovement();
            
         }

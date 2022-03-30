@@ -32,22 +32,6 @@ namespace Lonernot
 
 
 
-        public void MoveUp()
-        {
-
-            SetPosition(GetPosition() + new Vector2(1f, 0));
-
-        }
-
-
-
-        public void MoveDown()
-        {
-            
-         SetPosition(GetPosition() + new Vector2(-1f, 0));
-            
-        }
-
         // start Follow
 
         
