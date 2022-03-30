@@ -86,6 +86,18 @@ namespace Lonernot.States
             player.Velocity = Vector2.Zero;
         }
 
+        
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            DrawMap(spriteBatch);
+            player.Draw(spriteBatch);
+            if (timer.GetSpawn())
+            {
+                enemy.Draw(spriteBatch);
+            }
+
+        }
+
         public void Follow()
         {
 
@@ -107,28 +119,35 @@ namespace Lonernot.States
 
             }
         }
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+
+
+        public void GameOver()
         {
-            DrawMap(spriteBatch);
-            player.Draw(spriteBatch);
             if (timer.GetSpawn())
             {
-                enemy.Draw(spriteBatch);
+                if (player.CheckCollisonEnemy(enemy))
+                {
+                    
+                    _game.ChangeState(_game.gameOverState);
+                    
+                }
             }
-
         }
+
+
+
 
 
 
         public override void Update(GameTime gameTime)
         {
-
-           
             player.Update(gameTime);
+            timer.Update(gameTime);
             PlayerCollideMap();
+            GameOver();
             enemy.Update(gameTime);
             Follow();
-            timer.Update(gameTime);
+            
             //enemy.TestMovement();
            
         }

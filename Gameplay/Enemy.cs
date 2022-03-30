@@ -32,11 +32,20 @@ namespace Lonernot
 
 
 
-        // start Follow
+        public override void UpdateBoundingBox()
+        {
+            // The collision is at the feet of the player
+            BoundingBox = new Rectangle(
+            (int)(Position.X ),
+            (int)(Position.Y ),
+            16,
+            10
+            );
+        }
 
-        
 
-  
+
+
 
         protected virtual void SetAnimations()
         {
@@ -56,6 +65,8 @@ namespace Lonernot
 
             //Follow();
             //SetAnimations();
+            UpdateBoundingBox();
+            SetAnimations();
             base.Update(gameTime);
         }
 

@@ -65,6 +65,32 @@ namespace Lonernot
                 _animationManager.Play(_animations["Walking_up"]);
             else _animationManager.Stop();
         }
+
+        public void SetIsCaught(bool iscaught)
+        {
+            this.isCaught = iscaught;
+        }
+
+        public bool GetIsCaught()
+        {
+            return this.isCaught;
+        }
+
+
+        public bool CheckCollisonEnemy(Enemy enemy)
+        {
+            if (BoundingBox.Intersects(enemy.BoundingBox))
+            {
+                SetIsCaught(true);
+                return isCaught;
+            }
+            SetIsCaught(false);
+            return isCaught;
+        }
+
+
+
+
         public override void Update(GameTime gameTime)
         {
             UpdateBoundingBox();
@@ -81,4 +107,4 @@ namespace Lonernot
 
     
    
-    }
+}
