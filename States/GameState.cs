@@ -63,6 +63,20 @@ namespace Lonernot.States
             
         }
 
+        
+        public void PlayerCollideMap()
+        {
+            if ((player.Velocity.X > 0 && map.IsCollision(player.BoundingBox)) ||
+            (player.Velocity.X < 0 & map.IsCollision(player.BoundingBox)))
+                player.Velocity.X = 0;
+
+            if ((player.Velocity.Y > 0 && map.IsCollision(player.BoundingBox)) ||
+                (player.Velocity.Y < 0 & map.IsCollision(player.BoundingBox)))
+                player.Velocity.Y = 0;
+
+            player.Position += player.Velocity;
+            player.Velocity = Vector2.Zero;
+        }
 
         public void Follow()
         {
@@ -94,8 +108,9 @@ namespace Lonernot.States
         public override void Update(GameTime gameTime)
         {
 
-            
+           
             player.Update(gameTime);
+            PlayerCollideMap();
             enemy.Update(gameTime);
             Follow();
             //enemy.TestMovement();
