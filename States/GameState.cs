@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Lonernot.States
 {
-    public class GameState:State
+    public class GameState : State
     {
         public Map map;
         public Player player;
@@ -28,18 +28,18 @@ namespace Lonernot.States
             map = new Map(content, "Content/Lonernot.tmx");
             map.AddCollision();
             collison = map.GetCollisionPath();
-            
 
 
-        //loading animation for player
-        var playerAnimations = new Dictionary<string, Animation>()
+
+            //loading animation for player
+            var playerAnimations = new Dictionary<string, Animation>()
             {
                 {"Walking_up", new Animation(content.Load<Texture2D>("Spritesheets/Player/Walking_up"),4) },
                 {"Walking_down", new Animation(content.Load<Texture2D>("Spritesheets/Player/Walking_down"),4) },
                 {"Walking_right", new Animation(content.Load<Texture2D>("Spritesheets/Player/Walking_right"),4) },
                 {"Walking_left", new Animation(content.Load<Texture2D>("Spritesheets/Player/Walking_left"),4) }
             };
-            
+
             player = new Player(playerAnimations);
             player.SetPosition(map.GetStartingPoint());
 
@@ -52,7 +52,7 @@ namespace Lonernot.States
                 {"Walking_left", new Animation(content.Load<Texture2D>("Spritesheets/Enemy/Walking_left"),4) }
 
             };
-            
+
             //create enemy
             enemy = new Enemy(enemyAnimations);
             enemy.SetPosition(map.GetStartingPoint());
@@ -65,19 +65,28 @@ namespace Lonernot.States
 
         public void DrawMap(SpriteBatch spriteBatch)
         {
-            
-                map.DrawMapLayer(spriteBatch);
-                
-            
+
+            map.DrawMapLayer(spriteBatch);
+
+
         }
 
-        
-       
+
+
         public void PlayerCollideMap()
         {
-            
+
         }
 
+        public void GameOver()
+        {
+            if (player.CheckCollisonEnemy(enemy))
+            {
+
+                _game.ChangeState(_game.gameOverState);
+
+            }
+        }
         public void Follow()
         {
 
@@ -134,7 +143,7 @@ namespace Lonernot.States
             Follow();
             timer.Update(gameTime);
             //enemy.TestMovement();
-           
+            GameOver();
         }
     }
 }
