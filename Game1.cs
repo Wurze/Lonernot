@@ -2,7 +2,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using PixelDefense.States;
+using Microsoft.Xna.Framework.Media;
+using System.Collections.Generic;
+using System;
 
 namespace Lonernot
 {
@@ -25,6 +27,10 @@ namespace Lonernot
         private int defaultWidth = 1280;
         private int defaultHeight = 830;
 
+        public int volume = 10;
+
+        Song song;
+
         public void ChangeState(State state)
         {
             _nextState = state;
@@ -32,12 +38,14 @@ namespace Lonernot
 
         public Game1()
         {
+            
             graphics = new GraphicsDeviceManager(this)
             {
                 PreferredBackBufferWidth = defaultWidth,
                 PreferredBackBufferHeight = defaultHeight
             };
             Content.RootDirectory = "Content";
+
             graphics.ApplyChanges();
         }
 
@@ -59,8 +67,38 @@ namespace Lonernot
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            song = Content.Load<Song>("Sounds/bgMusic");
+     
+            MediaPlayer.Play(song);
+            MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
+            MediaPlayer.Volume = 0.5f;
+
             _currentState = menuState;
 
+        }
+
+        public int GetVolume()
+        {
+            return volume;
+        }
+
+        public void SetVolumeUp(object sender, EventArgs e)
+        {
+            MediaPlayer.Volume += 0.05f;
+            volume += 1;
+        }
+
+        public void SetVolumeDown(object sender, EventArgs e)
+        {
+            MediaPlayer.Volume -= 0.05f;
+            volume -= 1;
+        }
+
+        private void MediaPlayer_MediaStateChanged(object sender, EventArgs e)
+        {
+            //MediaPlayer.Volume -= -0.1f;
+            MediaPlayer.Play(song);
         }
 
         protected override void UnloadContent()

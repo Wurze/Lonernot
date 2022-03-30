@@ -33,12 +33,6 @@ namespace Lonernot.States
             var buttonTexture = _content.Load<Texture2D>("Controls/button3");
             font = _content.Load<SpriteFont>("Fonts/Font");
             this.textFontTitle = _content.Load<SpriteFont>("Fonts/TextFont");
-            /*this.firstSlide = _content.Load<Texture2D>("Controls/firstSlide");
-            this.secondSlide = _content.Load<Texture2D>("Controls/secondSlide2");
-            this.thirdSlide = _content.Load<Texture2D>("Controls/thirdSlide");
-            this.fourthSlide = _content.Load<Texture2D>("Controls/fourthSlide");
-            this.debugColor = _content.Load<Texture2D>("Controls/textBg");
-*/
 
             var chooseBackButton = new Button(buttonTexture, font)
             {
@@ -55,14 +49,6 @@ namespace Lonernot.States
 
         }
 
-       
-
-        /*public Rectangle bgCoordinates(int X, int Y)
-        {
-            textBox = new Rectangle(X, Y, 480, 170);
-            return textBox;
-        }
-        */
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             string tempStr = "Use W, A, S, D to move!";
@@ -77,8 +63,6 @@ namespace Lonernot.States
 
             foreach (var button in _button)
                 button.Draw(gameTime, spriteBatch);
-
-            
         }
         private void BackButton_Click(object sender, EventArgs e)
         {

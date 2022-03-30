@@ -99,17 +99,23 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/textFont.spritefont
 
-#begin Sounds/bgMusic.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
+#begin Sounds/bgMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
 /processorParam:Quality=Best
-/build:Sounds/bgMusic.wav
+/build:Sounds/bgMusic.mp3
 
 #begin Sounds/button-click.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Sounds/button-click.mp3
+
+#begin Sounds/gameOver.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/gameOver.mp3
 
 #begin Spritesheets/Enemy/Walking_down.png
 /importer:TextureImporter
