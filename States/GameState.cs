@@ -124,7 +124,7 @@ namespace Lonernot.States
                 enemy.Draw(spriteBatch);
             }
 
-            spriteBatch.DrawString(font, "Score  " + score, new Vector2(1100, 10), Color.Black);
+            spriteBatch.DrawString(font, "Score  " + score, new Vector2(1100, 10), Color.White);
 
         }
 
