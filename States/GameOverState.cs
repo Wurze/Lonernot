@@ -19,6 +19,8 @@ namespace Lonernot.States
         public SpriteFont textFontTitle;
         public SpriteFont font;
 
+        public bool IsRestarted = false;
+
         public GameOverState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             background = _content.Load<Texture2D>("Controls/Background");
@@ -44,6 +46,7 @@ namespace Lonernot.States
 
         private void BackButton_Click(object sender, EventArgs e)
         {
+            IsRestarted = true;
             _game.ChangeState(_game.menuState);
         }
 

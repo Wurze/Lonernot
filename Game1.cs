@@ -72,7 +72,7 @@ namespace Lonernot
      
             MediaPlayer.Play(song);
             MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
-            MediaPlayer.Volume = 0.5f;
+            MediaPlayer.Volume = 0;
 
             _currentState = menuState;
 
@@ -125,10 +125,10 @@ namespace Lonernot
         protected override void Update(GameTime gameTime)
         {
 
-            /*if (gameOverState.IsRestarted == true)
+            if (gameOverState.IsRestarted == true)
             {
                 Initialize();
-            }*/
+            }
 
             if (_nextState != null)
             {
