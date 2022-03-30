@@ -72,12 +72,6 @@ namespace Lonernot.States
         }
 
 
-
-        public void PlayerCollideMap()
-        {
-
-        }
-
         public void GameOver()
         {
             if (player.CheckCollisonEnemy(enemy))
@@ -87,6 +81,15 @@ namespace Lonernot.States
 
             }
         }
+
+        public void WinGame()
+        {
+            if (player.BoundingBox.Intersects(map.GetEndingPoint()))
+            {
+                _game.ChangeState(_game.gameOverState);
+            }
+        }
+
         public void Follow()
         {
 
@@ -145,7 +148,8 @@ namespace Lonernot.States
             timer.Update(gameTime);
             
             Follow();
-            
+            WinGame();
+
             //enemy.TestMovement();
             GameOver();
         }

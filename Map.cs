@@ -21,6 +21,7 @@ namespace Lonernot
         public Queue<Vector2> path;
         public List<Rectangle> pathList;
         public Vector2 startPoint;
+        public Rectangle endPoint;
 
         public object Tilesets { get; internal set; }
         public object Position { get; private set; }
@@ -73,12 +74,7 @@ namespace Lonernot
         public void DrawMapLayer(SpriteBatch spritebatch)
         {
             DrawLayer(0, spritebatch);
-            //DrawLayer(1, spritebatch);
         }
-
-     
-
-
 
         public void AddCollision()
         {
@@ -103,27 +99,14 @@ namespace Lonernot
             return false;
         }
 
-       
-
-        public Queue<Vector2> GetPath()
-        {
-            int points = Convert.ToInt32(map.ObjectGroups["Objects"].Properties["Points"]);
-
-            Queue<Vector2> path = new Queue<Vector2>();
-
-            for (int i = 1; i <= points; i++)
-            {
-                path.Enqueue(new Vector2((float)map.ObjectGroups["Objects"].Objects["Point" + i].X, (float)map.ObjectGroups["Objects"].Objects["Point" + i].Y));
-            }
-
-            path.Enqueue(new Vector2((float)map.ObjectGroups["Objects"].Objects["End"].X, (float)map.ObjectGroups["Objects"].Objects["End"].Y));
-
-            return path;
-        }
-
         public Vector2 GetStartingPoint()
         {
             return new Vector2((float)map.ObjectGroups["Objects"].Objects["Start"].X, (float)map.ObjectGroups["Objects"].Objects["Start"].Y);
+        }
+
+        public Rectangle GetEndingPoint()
+        {
+            return new Rectangle((int)map.ObjectGroups["Objects"].Objects["End"].X, (int)map.ObjectGroups["Objects"].Objects["End"].Y, (int)map.ObjectGroups["Objects"].Objects["End"].Width, (int)map.ObjectGroups["Objects"].Objects["End"].Height);
         }
 
 
