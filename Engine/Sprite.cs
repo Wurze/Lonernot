@@ -65,6 +65,8 @@ namespace Lonernot.Engine
             }
         }
 
+        
+
         public Sprite(Dictionary<string, Animation> animations)
         {
             _animations = animations;
@@ -80,7 +82,7 @@ namespace Lonernot.Engine
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (_texture != null)
-                spriteBatch.Draw(_texture, Position, Color.White);
+                spriteBatch.Draw(_texture, Position, null, Color.White, _rotation, Origin, Scale, SpriteEffects.None, 0);
             else if (_animationManager != null)
                 _animationManager.Draw(spriteBatch);
             else throw new Exception("This ain't right..!");
@@ -95,6 +97,7 @@ namespace Lonernot.Engine
                 (int)Math.Ceiling((double)_texture.Height)
                 );
         }
+
 
         public void CenterOrigin()
         {
@@ -117,6 +120,7 @@ namespace Lonernot.Engine
             _animationManager.Update(gameTime);
         }
 
+  
         // get and set methods
 
         public void SetIsActive(bool IsActive)

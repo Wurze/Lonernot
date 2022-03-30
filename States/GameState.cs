@@ -18,6 +18,7 @@ namespace Lonernot.States
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             map = new Map(content, "Content/Lonernot.tmx");
+            map.AddCollision();
             var playerAnimations = new Dictionary<string, Animation>()
             {
                 {"Walking_up", new Animation(content.Load<Texture2D>("Spritesheets/Player/Walking_up"),4) },
@@ -37,7 +38,7 @@ namespace Lonernot.States
                 {"Walking_left", new Animation(content.Load<Texture2D>("Spritesheets/Enemy/Walking_left"),4) }
 
             };
-
+            
             //create enemy
             enemy = new Enemy(enemyAnimations);
             // Buttons Creation
@@ -52,17 +53,9 @@ namespace Lonernot.States
                 
             
         }
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            DrawMap(spriteBatch);
-            player.Draw(spriteBatch);
-            enemy.Draw(spriteBatch);
-
-        }
-
         public void Follow()
         {
-           
+
 
             var distance = player.Position - enemy.Position;
             enemy._rotation = (float)Math.Atan2(distance.Y, distance.X);
@@ -75,17 +68,27 @@ namespace Lonernot.States
                 var t = MathHelper.Min((float)Math.Abs(currentDistance - enemy.FollowDistance), enemy.LinearVelocity);
                 var velocity = enemy.Direction * t;
 
-                enemy.Position += velocity/8;
+                enemy.Position += velocity / 8;
             }
         }
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            DrawMap(spriteBatch);
+            player.Draw(spriteBatch);
+            enemy.Draw(spriteBatch);
+
+        }
+        
 
         public override void Update(GameTime gameTime)
         {
+
+            
             player.Update(gameTime);
             enemy.Update(gameTime);
             Follow();
             //enemy.TestMovement();
-            //enemy.FollowPlayer(player);
+           
         }
     }
 }

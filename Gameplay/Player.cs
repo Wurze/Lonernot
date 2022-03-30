@@ -28,10 +28,22 @@ namespace Lonernot
             
         }
 
-        
+       
+
+        public override void UpdateBoundingBox()
+        {
+            // The collision is at the feet of the player
+            BoundingBox = new Rectangle(
+            (int)(Position.X + 5),
+            (int)(Position.Y + 14),
+            16,
+            10
+            );
+        }
         public virtual void Move()
         {
             if (Keyboard.GetState().IsKeyDown(Input.Up))
+
                 Velocity.Y = -mSpeed;
             else if (Keyboard.GetState().IsKeyDown(Input.Down))
                 Velocity.Y = mSpeed;
@@ -39,6 +51,7 @@ namespace Lonernot
                 Velocity.X = -mSpeed;
             else if (Keyboard.GetState().IsKeyDown(Input.Right))
                 Velocity.X = mSpeed;
+            
         }
         protected virtual void SetAnimations()
         {
@@ -54,6 +67,7 @@ namespace Lonernot
         }
         public override void Update(GameTime gameTime)
         {
+            UpdateBoundingBox();
             Move();
             SetAnimations();
             Position += Velocity;

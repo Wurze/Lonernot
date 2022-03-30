@@ -10,7 +10,7 @@ namespace Lonernot.Engine
 {
     public class AnimationManager
     {
-        protected Animation _animation;
+        public Animation _animation;
         private float _timer;
         public Vector2 Position { get; set; }
 
