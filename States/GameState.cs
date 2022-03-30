@@ -72,30 +72,10 @@ namespace Lonernot.States
         }
 
         
+       
         public void PlayerCollideMap()
         {
-            if ((player.Velocity.X > 0 && map.IsCollision(player.BoundingBox)) ||
-            (player.Velocity.X < 0 & map.IsCollision(player.BoundingBox)))
-                player.Velocity.X = 0;
-
-            if ((player.Velocity.Y > 0 && map.IsCollision(player.BoundingBox)) ||
-                (player.Velocity.Y < 0 & map.IsCollision(player.BoundingBox)))
-                player.Velocity.Y = 0;
-
-            player.Position += player.Velocity;
-            player.Velocity = Vector2.Zero;
-        }
-
-        
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            DrawMap(spriteBatch);
-            player.Draw(spriteBatch);
-            if (timer.GetSpawn())
-            {
-                enemy.Draw(spriteBatch);
-            }
-
+            
         }
 
         public void Follow()
@@ -119,35 +99,40 @@ namespace Lonernot.States
 
             }
         }
-
-
-        public void GameOver()
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            DrawMap(spriteBatch);
+            player.Draw(spriteBatch);
             if (timer.GetSpawn())
             {
-                if (player.CheckCollisonEnemy(enemy))
-                {
-                    
-                    _game.ChangeState(_game.gameOverState);
-                    
-                }
+                enemy.Draw(spriteBatch);
             }
+
         }
-
-
-
 
 
 
         public override void Update(GameTime gameTime)
         {
+
+            foreach (var wall in map.pathList)
+            {
+                if ((player.Velocity.X > 0 && player.IsTouchingLeft(wall)) ||
+                (player.Velocity.X < 0 & player.IsTouchingRight(wall)))
+                    player.Velocity.X = 0;
+
+                if ((player.Velocity.Y > 0 && player.IsTouchingTop(wall)) ||
+                    (player.Velocity.Y < 0 & player.IsTouchingBottom(wall)))
+                    player.Velocity.Y = 0;
+            }
+
+            player.Position += player.Velocity;
+            player.Velocity = Vector2.Zero;
             player.Update(gameTime);
-            timer.Update(gameTime);
-            PlayerCollideMap();
-            GameOver();
+            
             enemy.Update(gameTime);
             Follow();
-            
+            timer.Update(gameTime);
             //enemy.TestMovement();
            
         }

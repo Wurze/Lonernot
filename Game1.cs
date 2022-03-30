@@ -72,7 +72,7 @@ namespace Lonernot
      
             MediaPlayer.Play(song);
             MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
-            MediaPlayer.Volume = 0f;
+            MediaPlayer.Volume = 0.5f;
 
             _currentState = menuState;
 
@@ -85,14 +85,30 @@ namespace Lonernot
 
         public void SetVolumeUp(object sender, EventArgs e)
         {
-            MediaPlayer.Volume += 0.05f;
-            volume += 1;
+            if (MediaPlayer.Volume == 1)
+            {
+                volume = 20;
+                MediaPlayer.Volume = 20;
+            }
+            else
+            {
+                MediaPlayer.Volume += 0.05f;
+                volume += 1;
+            }      
         }
 
         public void SetVolumeDown(object sender, EventArgs e)
         {
-            MediaPlayer.Volume -= 0.05f;
-            volume -= 1;
+            if (MediaPlayer.Volume == 0)
+            {
+                volume = 0;
+                MediaPlayer.Volume = 0;
+            }
+            else
+            {
+                MediaPlayer.Volume -= 0.05f;
+                volume -= 1;
+            }
         }
 
         private void MediaPlayer_MediaStateChanged(object sender, EventArgs e)

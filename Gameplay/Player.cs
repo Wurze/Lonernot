@@ -53,6 +53,37 @@ namespace Lonernot
                 Velocity.X = mSpeed;
             
         }
+        public bool IsTouchingLeft(Rectangle mapWall)
+        {
+            return BoundingBox.Right + Velocity.X > mapWall.Left &&
+              BoundingBox.Left < mapWall.Left &&
+              BoundingBox.Bottom > mapWall.Top &&
+              BoundingBox.Top < mapWall.Bottom;
+        }
+
+        public bool IsTouchingRight(Rectangle mapWall)
+        {
+            return BoundingBox.Left + Velocity.X < mapWall.Right &&
+              BoundingBox.Right > mapWall.Right &&
+              BoundingBox.Bottom > mapWall.Top &&
+              BoundingBox.Top < mapWall.Bottom;
+        }
+
+        public bool IsTouchingTop(Rectangle mapWall)
+        {
+            return BoundingBox.Bottom + Velocity.Y > mapWall.Top &&
+              BoundingBox.Top < mapWall.Top &&
+              BoundingBox.Right > mapWall.Left &&
+              BoundingBox.Left < mapWall.Right;
+        }
+
+        public bool IsTouchingBottom(Rectangle mapWall)
+        {
+            return BoundingBox.Top + Velocity.Y < mapWall.Bottom &&
+              BoundingBox.Bottom > mapWall.Bottom &&
+              BoundingBox.Right > mapWall.Left &&
+              BoundingBox.Left < mapWall.Right;
+        }
         protected virtual void SetAnimations()
         {
             if (Velocity.X > 0)
@@ -95,9 +126,7 @@ namespace Lonernot
         {
             UpdateBoundingBox();
             Move();
-            SetAnimations();
-            Position += Velocity;
-            Velocity = Vector2.Zero;
+            SetAnimations();       
             base.Update(gameTime);
             
             
