@@ -18,6 +18,8 @@ namespace Lonernot
 
         public float LinearVelocity = 4f;
 
+        
+
         // for following
         public Sprite FollowTarget { get; set; }
         public float FollowDistance { get; set; }
@@ -25,7 +27,6 @@ namespace Lonernot
         public Enemy(Dictionary<string, Animation> animations) : base(animations)
         {
             
-            SetPosition(new Vector2(380,630));
             
         }
 

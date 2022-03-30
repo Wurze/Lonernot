@@ -15,11 +15,18 @@ namespace Lonernot.States
         public Map map;
         public Player player;
         public Enemy enemy;
+        public List<Rectangle> collison;
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
+            //create map
             map = new Map(content, "Content/Lonernot.tmx");
             map.AddCollision();
-            var playerAnimations = new Dictionary<string, Animation>()
+            collison = map.GetCollisionPath();
+            
+
+
+        //loading animation for player
+        var playerAnimations = new Dictionary<string, Animation>()
             {
                 {"Walking_up", new Animation(content.Load<Texture2D>("Spritesheets/Player/Walking_up"),4) },
                 {"Walking_down", new Animation(content.Load<Texture2D>("Spritesheets/Player/Walking_down"),4) },
@@ -41,10 +48,12 @@ namespace Lonernot.States
             
             //create enemy
             enemy = new Enemy(enemyAnimations);
+            enemy.SetPosition(map.GetStartingPoint());
             // Buttons Creation
             var buttonTexture = _content.Load<Texture2D>("Controls/button3");
             var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
         }
+
 
         public void DrawMap(SpriteBatch spriteBatch)
         {
@@ -53,6 +62,8 @@ namespace Lonernot.States
                 
             
         }
+
+
         public void Follow()
         {
 

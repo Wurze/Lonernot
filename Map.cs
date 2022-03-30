@@ -20,6 +20,7 @@ namespace Lonernot
         protected int tilesetTilesHigh;
         public Queue<Vector2> path;
         public List<Rectangle> pathList;
+        public Vector2 startPoint;
 
         public object Tilesets { get; internal set; }
         public object Position { get; private set; }
@@ -102,7 +103,7 @@ namespace Lonernot
             return false;
         }
 
-
+       
 
         public Queue<Vector2> GetPath()
         {
