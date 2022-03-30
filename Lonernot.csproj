@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="Controls\Button.cs" />
     <Compile Include="Engine\Input.cs" />
+    <Compile Include="Engine\Timer.cs" />
     <Compile Include="Gameplay\Enemy.cs" />
     <Compile Include="Engine\Animation.cs" />
     <Compile Include="Engine\AnimationManager.cs" />
