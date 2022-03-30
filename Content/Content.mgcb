@@ -117,6 +117,12 @@
 /processorParam:Quality=Best
 /build:Sounds/gameOver.mp3
 
+#begin Sounds/welcome.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/welcome.mp3
+
 #begin Spritesheets/Enemy/Walking_down.png
 /importer:TextureImporter
 /processor:TextureProcessor

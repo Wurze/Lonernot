@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 using System;
+using System.Threading;
 
 namespace Lonernot
 {
@@ -30,6 +31,7 @@ namespace Lonernot
         public int volume = 10;
 
         Song song;
+        Song sound;
 
         public void ChangeState(State state)
         {
@@ -69,10 +71,26 @@ namespace Lonernot
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             song = Content.Load<Song>("Sounds/bgMusic");
-     
-            MediaPlayer.Play(song);
-            MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
-            MediaPlayer.Volume = 0;
+            sound = Content.Load<Song>("Sounds/welcome");
+
+            new Thread(() =>
+            {
+                Thread.Sleep(1000);
+                MediaPlayer.Play(sound);
+                MediaPlayer.Volume = 0.5f;
+
+            }).Start();
+
+            new Thread(() =>
+            {
+                Thread.Sleep(5000);
+                MediaPlayer.Play(song);
+                MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
+                MediaPlayer.Volume = 0.5f;
+
+            }).Start();
+
+
 
             _currentState = menuState;
 
