@@ -62,7 +62,7 @@ namespace Lonernot.States
             spriteBatch.Draw(background, new Vector2(0, 0), Color.Pink);
             spriteBatch.Draw(paper, new Vector2(0, 0), Color.Pink);
 
-            if(!_game.gameState.player.isCaught)
+            if(_game.gameState.player.isCaught)
             {
                 spriteBatch.DrawString(font, lost, new Vector2(285, 260), Color.Black);
                 spriteBatch.DrawString(font, "Your score is: " + _game.gameState.score + " seconds", new Vector2(285, 285), Color.Black);

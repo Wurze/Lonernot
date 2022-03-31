@@ -86,7 +86,7 @@ namespace Lonernot
                 Thread.Sleep(5000);
                 MediaPlayer.Play(song);
                 MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
-                MediaPlayer.Volume = 0.5f;
+                MediaPlayer.Volume = 0f;
 
             }).Start();
 

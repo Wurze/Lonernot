@@ -18,15 +18,17 @@ namespace Lonernot
 
         public float LinearVelocity = 4f;
 
+        public float enemySpeed = 0;
+
         
 
         // for following
         public Sprite FollowTarget { get; set; }
         public float FollowDistance { get; set; }
 
-        public Enemy(Dictionary<string, Animation> animations) : base(animations)
+        public Enemy(Dictionary<string, Animation> animations, float enemySpeed) : base(animations)
         {
-            
+            this.enemySpeed = enemySpeed;
             
         }
 
