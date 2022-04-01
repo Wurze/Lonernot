@@ -69,8 +69,6 @@ namespace Lonernot.States
 
             };
 
-            //create enemy
-            //CreateEnemy();
             AddEnemy();
 
         }
@@ -194,11 +192,8 @@ namespace Lonernot.States
             }
             timer.Update(gameTime);
             portals.CheckTeleportation(player);
-            Follow();
-            
+            Follow();  
             WinGame();
-
-            //enemy.TestMovement();
             GameOver();
         }
     }
