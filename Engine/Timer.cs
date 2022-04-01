@@ -1,8 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Lonernot.Engine
 {
@@ -13,7 +9,6 @@ namespace Lonernot.Engine
         protected float countDuration = 2f; //every  2s.
         protected float currentTime = 0f;
         public bool spawn = false;
-
 
         public Timer()
         {
@@ -38,17 +33,11 @@ namespace Lonernot.Engine
             {
                 spawn = true;
             }
-
         }
 
         public float GetGameTime()
         {
             return currentTime;
         }
-
-
-
-
-
     }
 }

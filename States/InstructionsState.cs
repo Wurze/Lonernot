@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Lonernot.Controls;
-using Lonernot.Engine;
 
 namespace Lonernot.States
 {
     public class InstructionsState : State
     {
         private List<Button> _button;
-       
         public SpriteFont font;
-
         public Texture2D paper;
         public Texture2D background;
         public Texture2D wasd;
@@ -46,7 +39,6 @@ namespace Lonernot.States
             {
             chooseBackButton,
             };
-
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -74,9 +66,6 @@ namespace Lonernot.States
             foreach (var button in _button)
                 button.Update(gameTime);
         }
-    }
-
-
-    
+    }  
 }
 

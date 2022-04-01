@@ -1,18 +1,10 @@
-﻿using Lonernot.Engine;
-using Microsoft.Xna.Framework;
-using System;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Lonernot.Gameplay
 {
     public class Portals
     {
-
-
         // teleport timer
         protected int teleportCounter = 1;
         protected float countDuration = 2f; //every  2s.
@@ -24,14 +16,11 @@ namespace Lonernot.Gameplay
         // all the portals across the map 
         public List<Rectangle> portals;
 
-
-
         public Portals(Map Map)
         {
             map = Map;
             map.AddPortals();
             portals = Map.GetPortals();
-
         }
 
         public void ActivateTeleport()
@@ -54,31 +43,18 @@ namespace Lonernot.Gameplay
                     player.SetPosition(CreateTeleportTarget());
                 }
             }
-
         }
-
 
         // add player sa scoti portalul pe care e
         public Vector2 CreateTeleportTarget()
         {
-            
             return map.GetStartingPoint();
-
         }
-
 
         public void Teleportation(Player player)
         {
             //set new position for player
-          
-                player.SetPosition(CreateTeleportTarget());
-                
-            
-
+            player.SetPosition(CreateTeleportTarget());
         }
-
-
-
-
     }
 }

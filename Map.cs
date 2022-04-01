@@ -4,8 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using TiledSharp;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lonernot
 {
@@ -29,22 +27,17 @@ namespace Lonernot
 
         public Map(ContentManager content, string mapPath)
         {
-
             pathList = new List<Rectangle>();
             map = new TmxMap(mapPath);
             tileTexture = content.Load<Texture2D>(map.Tilesets[0].Name.ToString());
             tileWidth = map.Tilesets[0].TileWidth;
             tileHeight = map.Tilesets[0].TileHeight;
-
             tilesetTilesWide = tileTexture.Width / tileWidth;
             tilesetTilesHigh = tileTexture.Height / tileHeight;
 
             path = new Queue<Vector2>();
             portals = new List<Rectangle>();
-
-
         }
-
 
         public void DrawLayer(int index, SpriteBatch batch)
         {
@@ -126,9 +119,6 @@ namespace Lonernot
             }
         }
 
-
-
-
         // get and set methods
         public void SetTmxMap(TmxMap map)
         {
@@ -189,6 +179,5 @@ namespace Lonernot
         {
             return tilesetTilesHigh;
         }
-
     }
 }

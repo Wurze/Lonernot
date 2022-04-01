@@ -2,10 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lonernot.Controls
 {
@@ -14,13 +10,9 @@ namespace Lonernot.Controls
         #region Fields
 
         protected MouseState _currentMouse;
-
         protected SpriteFont _font;
-
         protected bool _isHovering;
-
         protected MouseState _previousMouse;
-
         protected Texture2D _texture;
 
         #endregion
@@ -28,11 +20,8 @@ namespace Lonernot.Controls
         #region Properties
 
         public event EventHandler Click;
-
         public bool Clicked { get; set; }
-
         public Color PenColour { get; set; }
-
         public Vector2 Position { get; set; }
 
         public Rectangle Rectangle
@@ -45,7 +34,6 @@ namespace Lonernot.Controls
 
         public string Text { get; set; }
 
-
         #endregion
 
         #region Methods
@@ -53,17 +41,13 @@ namespace Lonernot.Controls
         public Button(Texture2D texture, SpriteFont font)
         {
             _texture = texture;
-
             _font = font;
-
             PenColour = Color.White;
-
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             var colour = Color.White;
-
             if (_isHovering)
                 colour = Color.Gray;
 
@@ -73,7 +57,6 @@ namespace Lonernot.Controls
             {
                 var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
                 var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
-
                 spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColour);
             }
         }
@@ -89,7 +72,6 @@ namespace Lonernot.Controls
 
             if (mouseRectangle.Intersects(Rectangle))
             {
-
                 _isHovering = true;
 
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
@@ -98,9 +80,6 @@ namespace Lonernot.Controls
                 }
             }
         }
-
-
-
         #endregion
     }
 }

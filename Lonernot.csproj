@@ -119,7 +119,6 @@
     <Compile Include="States\MenuState.cs" />
     <Compile Include="States\SettingsState.cs" />
     <Compile Include="States\State.cs" />
-    <Compile Include="UI\Button.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

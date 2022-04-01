@@ -1,10 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lonernot.Engine
 {
@@ -14,7 +9,6 @@ namespace Lonernot.Engine
         private float _timer;
         public Vector2 Position { get; set; }
 
-       
         public AnimationManager(Animation animation) 
         {
             _animation = animation;
@@ -22,8 +16,6 @@ namespace Lonernot.Engine
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-
-            
             spriteBatch.Draw(_animation.Texture,
                             Position,
                              new Rectangle(_animation.CurrentFrame * 
@@ -31,25 +23,17 @@ namespace Lonernot.Engine
                                            _animation.FrameWidth,
                                            _animation.FrameHeight),
                              Color.White);
-
         }
-
-        
 
         public void Play(Animation animation)
         {
             if (_animation == animation)
                 return;
 
-
             _animation = animation;
-
             _animation.CurrentFrame = 0;
-
             _timer = 0;
-
-        }
-       
+        }      
 
         public void PlayOneFrame(Animation animation, int frame)
         {
@@ -60,27 +44,21 @@ namespace Lonernot.Engine
         public void Stop()
         {
             _timer = 0f;
-
             _animation.CurrentFrame = 0;
         }
 
         public void Update(GameTime gameTime)
         {
-
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-
 
             if (_timer > _animation.FrameSpeed && _animation.IsLooping == true)
             {
                 _timer = 0f;
-
                 _animation.CurrentFrame++;
 
                 if (_animation.CurrentFrame >= _animation.FrameCount)
                 {
                     _animation.CurrentFrame = 0;
-
                 }
             }
             if (_timer > _animation.FrameSpeed && _animation.IsLooping == false)
@@ -90,15 +68,9 @@ namespace Lonernot.Engine
 
                 if (_animation.CurrentFrame >= _animation.FrameCount)
                 {
-
                     _animation.CurrentFrame = _animation.FrameCount;
                 }
             }
-
-
-
         }
-
-  
     }
 }

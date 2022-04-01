@@ -1,11 +1,6 @@
 ﻿using Lonernot.Engine;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lonernot
 {
@@ -13,14 +8,9 @@ namespace Lonernot
     {
 
         public float mSpeed = 1.2f;
-        
         public Vector2 One { get; }
-
         public float LinearVelocity = 4f;
-
         public float enemySpeed = 0;
-
-        
 
         // for following
         public Sprite FollowTarget { get; set; }
@@ -28,11 +18,8 @@ namespace Lonernot
 
         public Enemy(Dictionary<string, Animation> animations, float enemySpeed) : base(animations)
         {
-            this.enemySpeed = enemySpeed;
-            
+            this.enemySpeed = enemySpeed; 
         }
-
-
 
         public override void UpdateBoundingBox()
         {
@@ -44,10 +31,6 @@ namespace Lonernot
             10
             );
         }
-
-
-
-
 
         protected virtual void SetAnimations()
         {
@@ -64,29 +47,8 @@ namespace Lonernot
 
         public override void Update(GameTime gameTime)
         {
-
-            //Follow();
-            //SetAnimations();
             UpdateBoundingBox();
-           // SetAnimations();
             base.Update(gameTime);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

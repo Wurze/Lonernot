@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Lonernot.Controls;
-using Lonernot.Engine;
-using Lonernot;
 
 namespace Lonernot.States
 {
@@ -60,7 +53,6 @@ namespace Lonernot.States
                 volumeDownButton,
                 chooseBackButton,
             };
-          
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -69,17 +61,12 @@ namespace Lonernot.States
 
             spriteBatch.Draw(background, new Vector2(0, 0), Color.Pink);
             spriteBatch.Draw(paper, new Vector2(0, 0), Color.Pink);
-
             spriteBatch.DrawString(textFontTitle, tempStr, new Vector2(285, 260), Color.Black);
             spriteBatch.DrawString(textFontTitle, "" + _game.GetVolume(), new Vector2(610, 380), Color.Black);
 
-
             foreach (var button in _button)
                 button.Draw(gameTime, spriteBatch);
-
         }
-
-     
 
         private void volumeDownButton_Click(object sender, EventArgs e)
         {
