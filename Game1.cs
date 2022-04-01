@@ -22,7 +22,7 @@ namespace Lonernot
         public SettingsState settingsState;
         public GameOverState gameOverState;
         public MouseState mouseState;
-
+        private Texture2D background;
         private State _currentState;
         private State _nextState;
         private int defaultWidth = 1280;
@@ -46,8 +46,7 @@ namespace Lonernot
                 PreferredBackBufferWidth = defaultWidth,
                 PreferredBackBufferHeight = defaultHeight
             };
-            Content.RootDirectory = "Content";
-
+            Content.RootDirectory = "Content";    
             graphics.ApplyChanges();
         }
 
@@ -69,9 +68,12 @@ namespace Lonernot
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            Window.Title = "Lonernot";
+            
+            
             song = Content.Load<Song>("Sounds/bgMusic");
             sound = Content.Load<Song>("Sounds/welcome");
+            background = Content.Load<Texture2D>("Controls/background");
 
             new Thread(() =>
             {
@@ -91,9 +93,18 @@ namespace Lonernot
             }).Start();
 
 
+            Thread bgLoad = new Thread(new ThreadStart(LoadGame))
+            {
+                IsBackground = true
+            };
+            bgLoad.Start();
+            
 
+        }
+
+        public void LoadGame()
+        {
             _currentState = menuState;
-
         }
 
         public int GetVolume()
@@ -170,11 +181,9 @@ namespace Lonernot
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-
+            spriteBatch.Draw(background, new Rectangle(0, 0, graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height), Color.White);
             _currentState.Draw(gameTime, spriteBatch);
-
             spriteBatch.End();
-
             base.Draw(gameTime);
         }
     }
