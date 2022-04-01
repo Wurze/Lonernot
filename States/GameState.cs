@@ -1,4 +1,5 @@
 ﻿using Lonernot.Engine;
+using Lonernot.Gameplay;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,6 +21,7 @@ namespace Lonernot.States
         public List<Rectangle> collison;
         public Timer timer;
         public float score;
+        public Portals portals;
         public SpriteFont font;
         public Dictionary<string, Animation> enemyAnimations;
 
@@ -37,7 +39,11 @@ namespace Lonernot.States
             //create map
             map = new Map(content, "Content/Lonernot.tmx");
             map.AddCollision();
+            
             collison = map.GetCollisionPath();
+
+            //create portals
+            portals = new Portals(map);
 
 
 
@@ -187,7 +193,7 @@ namespace Lonernot.States
                 
             }
             timer.Update(gameTime);
-
+            portals.CheckTeleportation(player);
             Follow();
             
             WinGame();

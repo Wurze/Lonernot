@@ -68,7 +68,7 @@ namespace Lonernot
             //Follow();
             //SetAnimations();
             UpdateBoundingBox();
-            SetAnimations();
+           // SetAnimations();
             base.Update(gameTime);
         }
 

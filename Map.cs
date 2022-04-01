@@ -22,6 +22,7 @@ namespace Lonernot
         public List<Rectangle> pathList;
         public Vector2 startPoint;
         public Rectangle endPoint;
+        public List<Rectangle> portals;
 
         public object Tilesets { get; internal set; }
         public object Position { get; private set; }
@@ -39,6 +40,7 @@ namespace Lonernot
             tilesetTilesHigh = tileTexture.Height / tileHeight;
 
             path = new Queue<Vector2>();
+            portals = new List<Rectangle>();
 
 
         }
@@ -108,6 +110,23 @@ namespace Lonernot
         {
             return new Rectangle((int)map.ObjectGroups["Objects"].Objects["End"].X, (int)map.ObjectGroups["Objects"].Objects["End"].Y, (int)map.ObjectGroups["Objects"].Objects["End"].Width, (int)map.ObjectGroups["Objects"].Objects["End"].Height);
         }
+
+
+        public List<Rectangle> GetPortals()
+        {
+            return portals;
+        }
+
+        public void AddPortals()
+        {
+
+            for (int i = 1; i <= 5; i++)
+            {
+                portals.Add(new Rectangle((int)map.ObjectGroups["Portals"].Objects["Portal" + i].X, (int)map.ObjectGroups["Portals"].Objects["Portal" + i].Y, (int)map.ObjectGroups["Portals"].Objects["Portal" + i].Width, (int)map.ObjectGroups["Portals"].Objects["Portal" + i].Height));
+            }
+        }
+
+
 
 
         // get and set methods

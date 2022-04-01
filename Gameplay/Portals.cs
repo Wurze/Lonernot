@@ -14,30 +14,34 @@ namespace Lonernot.Gameplay
 
 
         // teleport timer
-        protected int teleportLimit = 9;
         protected int teleportCounter = 1;
-        public bool teleport = false;
-
         protected float countDuration = 2f; //every  2s.
         protected float currentTime = 0f;
-        protected int trigger;
+        public bool activateTeleport;
+        public int limit;
+        protected Map map;
 
-
-
+        // all the portals across the map 
         public List<Rectangle> portals;
 
-        public bool activateTeleport;
 
-        public Portals(List<Rectangle> portalsPositions)
+
+        public Portals(Map Map)
         {
-            portals = portalsPositions;
-            activateTeleport = true; ;
-            trigger = 1;
+            map = Map;
+            map.AddPortals();
+            portals = Map.GetPortals();
+
         }
 
         public void ActivateTeleport()
         {
             activateTeleport = true;
+        }
+
+        public void StopTeleport()
+        {
+            activateTeleport = false;
         }
 
         public void CheckTeleportation(Player player)
@@ -47,41 +51,34 @@ namespace Lonernot.Gameplay
                 if (portal.Intersects(player.BoundingBox))
                 {
                     //Teleport
-                    ActivateTeleport();
-                    
-                    
+                    player.SetPosition(CreateTeleportTarget());
                 }
             }
 
         }
-        
 
-       
+
+        // add player sa scoti portalul pe care e
         public Vector2 CreateTeleportTarget()
         {
-            Random r = new Random();
-            int randomPortal = r.Next(portals.Count);
-
-            Vector2 target = new Vector2((float)portals[randomPortal].X, (float)portals[randomPortal].Y);
-
-            return target;
+            
+            return map.GetStartingPoint();
 
         }
+
 
         public void Teleportation(Player player)
         {
             //set new position for player
-            if (activateTeleport)
-            {
+          
                 player.SetPosition(CreateTeleportTarget());
-
-            }
+                
             
 
         }
 
 
-        
+
 
     }
 }
